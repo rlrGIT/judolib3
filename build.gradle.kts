@@ -33,6 +33,10 @@ dependencies {
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+	testImplementation("org.testcontainers:junit-jupiter:1.20.1")
+	testImplementation("org.testcontainers:localstack:1.20.1")
+	testImplementation("org.springframework.boot:spring-boot-testcontainers")
 }
 
 tasks.withType<Test> {
