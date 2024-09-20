@@ -41,7 +41,11 @@ public class JudolibTestConfiguration {
         return Collections.emptyList();
     }
 
-
+    /*
+        Maybe to fit he testcontainer paradigm, these get moved? Or do I use the
+        CommandLineRunner with S3Mock?
+        TODO: REFACTOR TO BE MONGO TEST CONTAINER, ISOLATE TESTS INTO GROUPS
+     */
     @Bean
     public List<VideoMetadata> mongoEntryProvider() {
         var entry0 = new VideoMetadata("seoi-nage", "how to throw seoi nage", "blob/path", "thumb/path");
