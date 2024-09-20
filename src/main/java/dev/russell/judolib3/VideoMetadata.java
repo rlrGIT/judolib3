@@ -2,7 +2,7 @@ package dev.russell.judolib3;
 
 import org.springframework.data.annotation.Id;
 
-record VideoMetaData(
+record VideoMetadata(
         @Id
         String name,
         String description,
