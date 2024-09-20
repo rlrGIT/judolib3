@@ -31,7 +31,7 @@ class Judolib3ApplicationTests {
 	void getVideo() throws Exception {
 		var response = mockServlet
 				.perform(get(
-						URI.create("/v1/videos/seoi-nage"))
+						URI.create("/v1/watch/seoi-nage"))
 				)
 				.andExpect(status().isOk())
 				.andReturn();

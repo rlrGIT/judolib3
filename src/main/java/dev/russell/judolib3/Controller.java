@@ -9,9 +9,15 @@ import org.springframework.web.bind.annotation.*;
 public class Controller {
 
     private final VideoMetadataRepository videoRepo;
+    private final StreamService streamService;
 
-    public Controller(VideoMetadataRepository videoRepo) {
+    @Autowired
+    public Controller(
+            VideoMetadataRepository videoRepo,
+            StreamService streamService
+    ) {
         this.videoRepo = videoRepo;
+        this.streamService = streamService;
     }
 
     @GetMapping("/")
@@ -19,14 +25,24 @@ public class Controller {
         return ResponseEntity.ok("Welcome to judo.lib!");
     }
 
-    @GetMapping("/videos/{name}")
+    @GetMapping("/watch/{name}")
     public ResponseEntity<VideoMetadata> getVideo(
             @PathVariable(name = "name") String name
     ) {
+        /*
+            Refactor so that this streams data from the S3
+         */
         return ResponseEntity.ok(videoRepo.findById(name)
                 .orElseThrow(
                     () -> new RuntimeException(String.format("Video: %s was not found.", name))
                 )
         );
+    }
+
+    @GetMapping("/videos")
+    public ResponseEntity<String> getMenuVideoMetadata() {
+        // maybe I need to use xml here, but we'll see
+        var json = streamService.populateMenu();
+        return ResponseEntity.ok(json);
     }
 }
