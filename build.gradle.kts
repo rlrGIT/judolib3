@@ -26,6 +26,11 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("io.github.wimdeblauwe:htmx-spring-boot-thymeleaf:3.5.0")
 	implementation("org.springframework.session:spring-session-core")
+
+	implementation("software.amazon.awssdk:s3:2.27.9")
+	implementation("software.amazon.awssdk:url-connection-client:2.27.15")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
