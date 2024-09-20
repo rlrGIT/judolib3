@@ -43,7 +43,15 @@ public class Controller {
 
     @GetMapping("/videos")
     public ResponseEntity<List<String>> getMenuVideoMetadata() {
-        // maybe I need to use xml here, but we'll see
+        /*
+            json or xml, we just need to return a view where
+            we can show a series thumbnails and titles
+
+            The template can we static and we can just dynamically load
+            Dunno how we gonna avoid server side rendering
+            WE DEFINITELY WANNA USE HTMX HERE
+            so we should return html as a response
+         */
         var json = streamService.populateMenu();
         return ResponseEntity.ok(json);
     }

@@ -1,5 +1,7 @@
 package dev.russell.judolib3;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.core.MongoClientFactoryBean;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
@@ -33,6 +36,14 @@ public class JudolibTestConfiguration {
                         AwsBasicCredentials.create(ACCESS_KEY, SECRET_KEY)))
                 .region(Region.US_EAST_1)
                 .build();
+    }
+
+    @Bean
+    public MongoClientFactoryBean testClientProvider(
+    ) {
+        MongoClientFactoryBean mongo = new MongoClientFactoryBean();
+        mongo.setHost("localhost");
+        return mongo;
     }
 
     @Bean

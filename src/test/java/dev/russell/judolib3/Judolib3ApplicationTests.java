@@ -1,5 +1,6 @@
 package dev.russell.judolib3;
 
+import com.mongodb.client.MongoClient;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
+import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.containers.localstack.LocalStackContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -38,6 +40,10 @@ class Judolib3ApplicationTests {
 					DockerImageName.parse("localstack/localstack:3.5.0")
 			).withServices(S3);
 
+	@Container
+	private static final MongoDBContainer mockDb =
+			new MongoDBContainer("mongo:7.0.0");
+
 	@DynamicPropertySource
 	public static void registerEndpoint(DynamicPropertyRegistry registry) {
 		registry.add("localstack.s3.endpoint", mockS3::getEndpoint);
@@ -56,6 +62,11 @@ class Judolib3ApplicationTests {
 
 		var response = client.createBucket(createBucketRequest);
 		assert(!response.location().isEmpty());
+	}
+
+	@BeforeAll
+	public static void initMongoDb(@Autowired MongoClient client) {
+		client.startSession();
 	}
 
 	@AfterAll

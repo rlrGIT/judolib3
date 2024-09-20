@@ -36,6 +36,7 @@ dependencies {
 
 	testImplementation("org.testcontainers:junit-jupiter:1.20.1")
 	testImplementation("org.testcontainers:localstack:1.20.1")
+	testImplementation("org.testcontainers:mongodb:1.20.1")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
 }
 

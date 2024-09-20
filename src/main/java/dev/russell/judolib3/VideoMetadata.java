@@ -1,7 +1,9 @@
 package dev.russell.judolib3;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 record VideoMetadata(
         @Id
         String name,

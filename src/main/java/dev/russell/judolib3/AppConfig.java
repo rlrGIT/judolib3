@@ -7,10 +7,10 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 
 @Configuration
-public class BlobClientConfiguration {
+public class AppConfig {
 
     @Bean
-    public S3Client clientProvider() {
+    public S3Client s3ClientProvider() {
         return S3Client.builder()
                 .credentialsProvider(DefaultCredentialsProvider.create())
                 .region(Region.US_EAST_2)
