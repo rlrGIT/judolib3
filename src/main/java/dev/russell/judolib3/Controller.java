@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1")
 public class Controller {
@@ -40,7 +42,7 @@ public class Controller {
     }
 
     @GetMapping("/videos")
-    public ResponseEntity<String> getMenuVideoMetadata() {
+    public ResponseEntity<List<String>> getMenuVideoMetadata() {
         // maybe I need to use xml here, but we'll see
         var json = streamService.populateMenu();
         return ResponseEntity.ok(json);

@@ -13,6 +13,7 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 
 import java.net.URI;
+import java.util.Collections;
 import java.util.List;
 
 @TestConfiguration
@@ -33,6 +34,13 @@ public class JudolibTestConfiguration {
                 .region(Region.US_EAST_1)
                 .build();
     }
+
+    @Bean
+    public List<String> s3ObjectProvider() {
+        // maybe just implement uploads? rather than injecting starting vals. you may repeat code.
+        return Collections.emptyList();
+    }
+
 
     @Bean
     public List<VideoMetadata> mongoEntryProvider() {
